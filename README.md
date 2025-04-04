@@ -1,6 +1,6 @@
 ## Daftar Isi
 - [About](#About)
-- [Notes](#ImportantNotes)
+- [Notes](#Notes)
 - [Usage](#Usage)
 - [Contribute](#Kontribusi)
 
@@ -9,7 +9,7 @@ Script For Hardening Linux Server,Fresh Install on Bash Script.
 
 Hardening a Linux server involves several steps to enhance its security and protect it from potential attacks. Below is a basic script that covers some essential hardening techniques, including setting up a firewall, disabling unused services, and implementing user privilege management. This script is intended for educational purposes and should be tested in a safe environment before deploying it on a production server.
 
-## Important Notes:
+## Notes:
 
 Backup: Always back up your server before making significant changes.
 Testing: Test the script in a non-production environment first to ensure it works as expected.
