@@ -24,6 +24,7 @@ Execution:
 Download, use the script file (e.g., hardening.sh), make it executable, and then execute it with root privileges:
 
 (`chmod +x hardening.sh`).
+
 (`sudo ./hardening.sh`).
 
 ## Kontribusi
