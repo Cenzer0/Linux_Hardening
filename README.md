@@ -3,7 +3,9 @@
 - [Notes](#Notes)
 - [Usage](#Usage)
 - [Contribute](#Kontribusi)
+- [lisensi](#Lisensi)
 
+  
 ## About
 Script For Hardening Linux Server,Fresh Install on Bash Script.
 
@@ -31,6 +33,17 @@ sudo ./harden_linux.sh
 4. Push ke branch (`git push origin feature-fix`).
 5. Buat Pull Request.
 
+## Lisensi
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-blue)
+Perangkat lunak ini dilisensikan di bawah **GPL 3.0 License**.  
+Anda bebas untuk:
+- Menggunakan perangkat lunak ini untuk tujuan apapun.
+- Memodifikasi perangkat lunak ini untuk kebutuhan pribadi atau lainnya.
+- Mendistribusikan perangkat lunak ini, termasuk hasil modifikasi, dengan syarat Anda menyertakan salinan lisensi ini dan kode sumber.
+
+Namun, Anda tidak boleh:
+- Menambahkan pembatasan lebih lanjut terhadap kebebasan orang lain untuk menggunakan, memodifikasi, atau mendistribusikan perangkat lunak ini.
+- Menggunakan perangkat lunak ini dengan cara yang menghalangi kebebasan tersebut, seperti menggunakan DRM atau paten.
+
+Untuk informasi lebih lanjut, Anda bisa membaca teks lengkap **GPL 3.0 License** di sini: [GPL 3.0 License](https://www.gnu.org/licenses/gpl-3.0.html).
+
