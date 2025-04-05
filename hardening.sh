@@ -1,82 +1,102 @@
 #!/bin/bash
 
-# Script to harden a Linux server
+VERSION="1.0.0-Beta"
 
-# Update the system
-echo "Updating the system..."
+if [[ "$1" == "--version" || "$1" == "-v" ]]; then
+  echo "Linux Hardening Script - Version $VERSION"
+  exit 0
+fi
+
+# ===================================================================
+# 🐧 Linux Server Hardening Script 🐧
+# Target: Ubuntu (but works on most Debian-based distros)(maybe:xixiixi)
+# Author: Cenzer0.
+# "Time to fortify this server into a war-ready tank!"
+# ===================================================================
+
+echo "=============================================="
+echo "   🐧 Linux Server Hardening - Ubuntu Style   "
+echo "     Securing your system like a pro!        "
+echo "=============================================="
+
+
+# Check if run as root
+if [ "$EUID" -ne 0 ]; then
+  echo "❌ Please run as root"
+  exit 1
+fi
+
+# Update and Upgrade
+echo "📦 Updating system..."
 apt update && apt upgrade -y
 
-# Install necessary packages
-echo "Installing necessary packages..."
-apt install -y ufw fail2ban
-
-# Set up UFW (Uncomplicated Firewall)
-echo "Setting up the firewall..."
-ufw default deny incoming
-ufw default allow outgoing
-
-# Allow SSH (change port if necessary)
-SSH_PORT=22
-echo "Allowing SSH on port $SSH_PORT..."
-ufw allow $SSH_PORT
-
-# Allow other necessary ports (e.g., HTTP, HTTPS)
-ufw allow 80/tcp
-ufw allow 443/tcp
-
-# Enable the firewall
-echo "Enabling the firewall..."
-ufw enable
-
-# Disable root login via SSH
-echo "Disabling root login via SSH..."
-sed -i 's/^PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
-systemctl restart sshd
-
-# Set up Fail2Ban
-echo "Setting up Fail2Ban..."
-systemctl enable fail2ban
-systemctl start fail2ban
-
 # Disable unused services
-echo "Disabling unused services..."
+echo "👾 Disabling unused services..."
 systemctl disable avahi-daemon
 systemctl stop avahi-daemon
 
-# Set up automatic security updates
-echo "Setting up automatic security updates..."
+# Enable UFW (Uncomplicated Firewall)
+echo "🔥 Configuring UFW firewall..."
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow ssh
+ufw enable
+
+# Allow SSH (change port if necessary)
+SSH_PORT=22
+echo "->....Allowing SSH on port $SSH_PORT..."
+ufw allow $SSH_PORT
+
+# Install Fail2Ban
+echo "🚨 Installing Fail2Ban..."
+apt install -y fail2ban
+systemctl enable fail2ban
+systemctl start fail2ban
+
+# SSH Config Hardening
+echo "🔐 Hardening SSH configuration..."
+sed -i 's/^#PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+systemctl restart sshd
+
+# Secure shared memory
+echo "🧠 Securing shared memory..."
+echo "tmpfs /run/shm tmpfs defaults,noexec,nosuid 0 0" >> /etc/fstab
+mount -o remount /run/shm
+
+# Create a new user with sudo access
+echo "👤 Creating secure sudo user..."
+read -p "Enter new username: " newuser
+adduser "$newuser"
+usermod -aG sudo "$newuser"
+
+# Install & configure automatic updates
+echo "🔄 Enabling automatic updates..."
 apt install -y unattended-upgrades
-dpkg-reconfigure --priority=low unattended-upgrades
+dpkg-reconfigure -plow unattended-upgrades
 
-# Set password policies
-echo "Setting password policies..."
-cat <<EOL >> /etc/login.defs
-PASS_MAX_DAYS   90
-PASS_MIN_DAYS   10
-PASS_MIN_LEN    12
-EOL
+# ClamAV for antivirus (optional)
+echo "🛡️ Installing ClamAV antivirus..."
+apt install -y clamav clamav-daemon
+freshclam
+systemctl enable clamav-freshclam
+systemctl start clamav-freshclam
 
-# Set up user privilege management
-echo "Setting up user privilege management..."
-# Add a new user (replace 'newuser' with your desired username)
-NEW_USER="newuser"
-adduser $NEW_USER
-usermod -aG sudo $NEW_USER
-
-# Disable unused network protocols
-echo "Disabling unused network protocols..."
-echo "net.ipv4.conf.all.rp_filter = 1" >> /etc/sysctl.conf
-echo "net.ipv4.conf.default.rp_filter = 1" >> /etc/sysctl.conf
-sysctl -p
-
-# Set file permissions
-echo "Setting file permissions..."
-chmod 700 /root
-chmod 600 /etc/shadow
+# Allow other necessary ports (e.g., HTTP, HTTPS)
+echo "❄️ Allowing Port Firewall"
+ufw allow 80/tcp
+ufw allow 443/tcp
 
 # Log all sudo commands
-echo "Logging all sudo commands..."
+echo "⚡️ Logging all sudo commands..."
 echo "Defaults logfile=/var/log/sudo.log" >> /etc/sudoers
 
-# Final message
-echo "Linux hardening script completed. Please review the changes made."
+# Final Message
+echo "✅ Hardening complete. Please:"
+echo "1. Use 'ssh -p 22 user@your_server' to connect next time."
+echo "2. Double-check your UFW and SSH settings."
+echo "3. Reboot your server for all changes to apply."
+
+echo "🚀 Let's Go Battle, $USER!"
+
+# EOF
