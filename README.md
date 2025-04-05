@@ -1,4 +1,4 @@
-<img src="logo/logo.png" width="500" alt="Linux Tank Banner">
+<img src="assets/logo.png" width="500" alt="Linux Tank Banner">
 
 ## Daftar Isi
 - [About](#About)
