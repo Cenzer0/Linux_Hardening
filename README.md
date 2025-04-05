@@ -1,15 +1,4 @@
-[![Alt Text](logo/logo.png)](https://github.com/Cenzer0/linux-hardening)
-
-
-
-
-
-
-
-
-
-
-
+<img src="logo/logo.png" width="500" alt="Linux Tank Banner">
 
 ## Daftar Isi
 - [About](#About)
