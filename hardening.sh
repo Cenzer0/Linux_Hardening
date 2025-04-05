@@ -2,20 +2,43 @@
 
 VERSION="1.0.0-Beta"
 
-if [[ "$1" == "--version" || "$1" == "-v" ]]; then
-  echo "Linux Hardening Script - Version $VERSION"
-  echo "       ______________"
-  echo "  ___ / =======  [] \\___________"
-  echo " |___ | Linux Hardening Script  \\"
-  echo "     \\___________________________>"
-  echo "     /   (_)   (_)   (_)   (_)   \\"
-  echo "  __/_____________________________\\__"
-  echo " |___________________________________|"
-  echo "     Cenzer00 DEFENSE SYSTEMS "
-  echo "  🐧 Securing Linux Like a Battle Tank!"
+# Fungsi Help
+show_help() {
+  echo "=========================================="
+  echo " 🐧 Linux Hardening Script by Cenzer0"
+  echo "------------------------------------------"
+  echo " Usage:"
+  echo "   ./hardening.sh [option]"
+  echo ""
+  echo " Options:"
+  echo "   --help, -h        Show this help message"
+  echo "   --version, -v     Show script version"
+  echo "------------------------------------------"
+  echo " Example:"
+  echo "   sudo ./hardening.sh"
+  echo "=========================================="
+}
 
-  exit 0
-fi
+# Cek argumen
+case "$1" in
+  --help|-h)
+    show_help
+    exit 0
+    ;;
+  --version|-v)
+    echo "Linux Hardening Script - Version $VERSION"
+    echo "       ______________"
+    echo "  ___ / =======  [] \\___________"
+    echo " |___ | Linux Hardening Script  \\"
+    echo "     \\___________________________>"
+    echo "     /   (_)   (_)   (_)   (_)   \\"
+    echo "  __/_____________________________\\__"
+    echo " |___________________________________|"
+    echo "     Cenzer00 DEFENSE SYSTEMS "
+    echo "  🐧 Securing Linux Like a Battle Tank!"
+    exit 0
+    ;;
+esac
 
 # ===================================================================
 # 🐧 Linux Server Hardening Script 🐧
