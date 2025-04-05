@@ -4,6 +4,16 @@ VERSION="1.0.0-Beta"
 
 if [[ "$1" == "--version" || "$1" == "-v" ]]; then
   echo "Linux Hardening Script - Version $VERSION"
+  echo "       ______________"
+  echo "  ___ / =======  [] \\___________"
+  echo " |___ | Linux Hardening TANK 💥  \\"
+  echo "     \\___________________________>"
+  echo "     /   (_)   (_)   (_)   (_)   \\"
+  echo "  __/_____________________________\\__"
+  echo " |___________________________________|"
+  echo "     Cenzer00 DEFENSE SYSTEMS "
+  echo "    🐧 Securing Linux Like a Battle Tank!"
+
   exit 0
 fi
 
