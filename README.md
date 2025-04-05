@@ -1,11 +1,11 @@
 <img src="assets/logo1.png" width="500" alt="Linux Tank Banner">
 
 ## Daftar Isi
-- [About](#About)
-- [Notes](#Notes)
-- [Usage](#Usage)
-- [Contribute](#Kontribusi)
-- [lisensi](#Lisensi)
+- [> About](#About)
+- [> Notes](#Notes)
+- [> Usage](#Usage)
+- [> Contribute](#Kontribusi)
+- [> Lisensi](#Lisensi)
 
   
 ## About
