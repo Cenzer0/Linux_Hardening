@@ -1,3 +1,7 @@
+[![Alt Text](logo/logo.png)](https://github.com/Cenzer0/linux-hardening)
+
+
+
 ## Daftar Isi
 - [About](#About)
 - [Notes](#Notes)
